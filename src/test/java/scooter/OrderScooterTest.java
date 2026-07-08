@@ -22,12 +22,9 @@ public class OrderScooterTest {
         driver = new ChromeDriver();
         driver.get("https://qa-scooter.praktikum-services.ru/");
 
-        // Кликаем по куки, чтобы они не перекрывали кнопки заказа
-        try {
-            driver.findElement(By.id("rcc-confirm-button")).click();
-        } catch (Exception e) {
-            // Если плашки нет, идем дальше
-        }
+        // Создаем объект страницы и вызываем готовый метод
+        MainPage mainPage = new MainPage(driver);
+        mainPage.acceptCookies();
     }
 
     // Поставщик данных для параметризации формы заказа

@@ -18,11 +18,9 @@ public class AccordionTest {
         driver = new ChromeDriver();
         driver.get("https://qa-scooter.praktikum-services.ru/");
 
-        try {
-            driver.findElement(By.id("rcc-confirm-button")).click();
-        } catch (Exception e) {
-            // Если кнопки нет, идем дальше
-        }
+
+        MainPage mainPage = new MainPage(driver);
+        mainPage.acceptCookies();
     }
 
     @ParameterizedTest

@@ -24,6 +24,9 @@ public class MainPage {
     // Кнопка «Заказать» внизу страницы (в секции «Как это работает»)
     private final By bottomOrderButton = By.xpath(".//div[contains(@class, 'Home_FinishButton')]/button[text()='Заказать']");
 
+    // Кнопка согласия с куки
+    private final By cookieButton = By.id("rcc-confirm-button");
+
     // Стрелочка / заголовок вопроса в разделе «Вопросы о важном»
     // Локатор динамический, возвращает By в зависимости от индекса (0-7)
     public By getQuestionButton(int index) {
@@ -66,5 +69,14 @@ public class MainPage {
         new WebDriverWait(driver, Duration.ofSeconds(3))
                 .until(ExpectedConditions.visibilityOfElementLocated(getAnswerText(index)));
         return driver.findElement(getAnswerText(index)).getText();
+    }
+
+    // Принять куки
+    public void acceptCookies() {
+        try {
+            driver.findElement(cookieButton).click();
+        } catch (Exception e) {
+            // Если плашка с куки не появилась, просто идём дальше
+        }
     }
 }
